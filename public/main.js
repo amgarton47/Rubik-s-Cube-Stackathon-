@@ -34,5 +34,7 @@ function setup() {
 
 function draw() {
   background(158, 163, 149);
+  rotateX(-0.25);
+  rotateY(-0.3);
   cube.display();
 }

@@ -1,6 +1,8 @@
 const CUBIE_SIZE = 40;
 let arr = [];
 
+// colors
+
 class Cube {
   constructor(dim) {
     for (let i = 0; i < dim; i++) {
@@ -12,13 +14,24 @@ class Cube {
           const y = j * CUBIE_SIZE - offset;
           const z = k * CUBIE_SIZE - offset;
 
-          arr.push(new Cubie(x, y, z, CUBIE_SIZE));
+          const qb = new Cubie(x, y, z, CUBIE_SIZE);
+
+          arr.push(qb);
         }
       }
     }
+
+    console.log(arr);
   }
 
   display() {
-    arr.forEach(c => c.display());
+    arr.forEach(c => {
+      if (c.vector.x == -40 && c.vector.y == -40 && c.vector.z == -40) {
+        fill(COLORS.red);
+        return c.display();
+      }
+      fill(255);
+      return c.display();
+    });
   }
 }
