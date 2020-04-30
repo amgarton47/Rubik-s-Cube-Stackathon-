@@ -30,11 +30,65 @@ function setup() {
   // ---------------------------------------------------------
 
   createEasyCam();
+  // turnZ();
 }
 
+let x = -0.4;
+let y = -0.4;
+
 function draw() {
-  background(158, 163, 149);
-  rotateX(-0.25);
-  rotateY(-0.3);
+  background(50, 51, 51);
+  rotateX(x);
+  rotateY(y);
   cube.display();
+}
+
+function keyPressed() {
+  switch (keyCode) {
+    case DOWN_ARROW:
+      x -= 0.4;
+      break;
+    case UP_ARROW:
+      x += 0.4;
+      break;
+    case LEFT_ARROW:
+      y -= 0.4;
+      break;
+    case RIGHT_ARROW:
+      y += 0.4;
+      break;
+  }
+
+  switch (key) {
+    case "f":
+      turnZ(2, false);
+      break;
+    case "F":
+      turnZ(2, true);
+      break;
+    case "b":
+      turnZ(0, true);
+      break;
+    case "B":
+      turnZ(0, false);
+      break;
+    case "u":
+      turnY(0, false);
+      break;
+    case "U":
+      turnY(0, true);
+      break;
+    case "d":
+      turnY(2, true);
+      break;
+    case "D":
+      turnY(2, false);
+      break;
+    case "x":
+      turnX(1, true);
+      break;
+    case "y":
+      turnY(1, true);
+      break;
+  }
 }
