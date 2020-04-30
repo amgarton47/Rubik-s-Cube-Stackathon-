@@ -1,23 +1,8 @@
-// const Cubie = require("./Cubie");
-
 const CANVAS_HEIGHT = window.innerHeight - 50;
 const CANVAS_WIDTH = window.innerWidth - 100;
 
-// let a = window.innerHeight;
-// console.log(a);
-// let c = new Cubie(10, 18, 100, 100);
+let cube = new Cube(3);
 
-let arr = [];
-
-for (let i = -1; i < 2; i++) {
-  for (let j = -1; j < 2; j++) {
-    for (let k = -1; k < 2; k++) {
-      arr.push(new Cubie(i * 30, j * 30, k * 30, 30));
-    }
-  }
-}
-
-console.log(arr);
 function setup() {
   createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT, WEBGL);
 
@@ -44,11 +29,10 @@ function setup() {
   };
   // ---------------------------------------------------------
 
-  background(0, 0, 255);
   createEasyCam();
 }
 
 function draw() {
   background(158, 163, 149);
-  arr.forEach(c => c.display());
+  cube.display();
 }

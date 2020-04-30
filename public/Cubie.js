@@ -11,19 +11,3 @@ class Cubie {
     pop();
   }
 }
-
-// let
-
-// class Cube {
-//   constructor(dim) {
-//     this.dim = dim;
-
-//     for (let i = 0; i < dim; i++) {
-//       for (let j = 0; j < dim; j++) {
-//         for (let k = 0; k < dim; k++) {
-
-//         }
-//       }
-//     }
-//   }
-// }
