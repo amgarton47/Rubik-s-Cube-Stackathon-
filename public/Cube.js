@@ -12,10 +12,9 @@ class Cube {
         qb[i][j] = [];
         for (let k = 0; k < dim; k++) {
           const len = 50;
-          const offset = (dim - 1) * len * 0.5;
-          const x = len * i - offset;
-          const y = len * j - offset;
-          const z = len * k - offset;
+          const x = len * i - len;
+          const y = len * j - len;
+          const z = len * k - len;
           qb[i][j][k] = new Cubie(x, y, z, len);
         }
       }

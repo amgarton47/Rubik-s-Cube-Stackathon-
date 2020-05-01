@@ -1,5 +1,5 @@
-const CANVAS_HEIGHT = window.innerHeight - 50;
-const CANVAS_WIDTH = window.innerWidth - 100;
+const CANVAS_HEIGHT = window.innerHeight * 0.95;
+const CANVAS_WIDTH = window.innerWidth * 0.95;
 
 let cube = new Cube(3);
 
@@ -60,35 +60,69 @@ function keyPressed() {
   }
 
   switch (key) {
+    // F and B
     case "f":
-      turnZ(2, false);
+      turnZ(2);
       break;
     case "F":
-      turnZ(2, true);
+      turnZ(2);
+      turnZ(2);
+      turnZ(2);
       break;
     case "b":
-      turnZ(0, true);
+      turnZ(0);
+      turnZ(0);
+      turnZ(0);
       break;
     case "B":
-      turnZ(0, false);
+      turnZ(0);
       break;
+
+    // U and D
     case "u":
-      turnY(0, false);
+      turnY(0);
       break;
     case "U":
-      turnY(0, true);
+      turnY(0);
+      turnY(0);
+      turnY(0);
       break;
     case "d":
-      turnY(2, true);
+      turnY(2);
+      turnY(2);
+      turnY(2);
       break;
     case "D":
-      turnY(2, false);
+      turnY(2);
       break;
-    case "x":
-      turnX(1, true);
+
+    // R and L
+    case "r":
+      turnX(2);
+      break;
+    case "R":
+      turnX(2);
+      turnX(2);
+      turnX(2);
+      break;
+    case "l":
+      turnX(0);
+      turnX(0);
+      turnX(0);
+      break;
+    case "L":
+      turnX(0);
+      break;
+
+    // Middle layer slices
+    case "z":
+      turnZ(1);
       break;
     case "y":
-      turnY(1, true);
+      turnY(1);
+      break;
+    case "x":
+      turnX(1);
       break;
   }
 }

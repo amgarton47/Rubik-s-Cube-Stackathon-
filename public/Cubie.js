@@ -109,52 +109,28 @@ class Config {
     return new Config(temp);
   }
 
-  rotateZ(clockwise) {
-    if (clockwise) {
-      let temp = this.sides[D];
-      this.sides[D] = this.sides[R];
-      this.sides[R] = this.sides[U];
-      this.sides[U] = this.sides[L];
-      this.sides[L] = temp;
-    } else {
-      let temp = this.sides[U];
-      this.sides[U] = this.sides[R];
-      this.sides[R] = this.sides[D];
-      this.sides[D] = this.sides[L];
-      this.sides[L] = temp;
-    }
+  rotateZ() {
+    let temp = this.sides[U];
+    this.sides[U] = this.sides[R];
+    this.sides[R] = this.sides[D];
+    this.sides[D] = this.sides[L];
+    this.sides[L] = temp;
   }
 
-  rotateY(clockwise) {
-    if (clockwise) {
-      let temp = this.sides[R];
-      this.sides[R] = this.sides[B];
-      this.sides[B] = this.sides[L];
-      this.sides[L] = this.sides[F];
-      this.sides[F] = temp;
-    } else {
-      let temp = this.sides[R];
-      this.sides[R] = this.sides[F];
-      this.sides[F] = this.sides[L];
-      this.sides[L] = this.sides[B];
-      this.sides[B] = temp;
-    }
+  rotateY() {
+    let temp = this.sides[R];
+    this.sides[R] = this.sides[F];
+    this.sides[F] = this.sides[L];
+    this.sides[L] = this.sides[B];
+    this.sides[B] = temp;
   }
 
-  rotateX(clockwise) {
-    if (clockwise) {
-      let temp = this.sides[F];
-      this.sides[F] = this.sides[U];
-      this.sides[U] = this.sides[B];
-      this.sides[B] = this.sides[D];
-      this.sides[D] = temp;
-    } else {
-      let temp = this.sides[B];
-      this.sides[B] = this.sides[U];
-      this.sides[U] = this.sides[F];
-      this.sides[F] = this.sides[D];
-      this.sides[D] = temp;
-    }
+  rotateX() {
+    let temp = this.sides[F];
+    this.sides[F] = this.sides[U];
+    this.sides[U] = this.sides[B];
+    this.sides[B] = this.sides[D];
+    this.sides[D] = temp;
   }
 }
 
@@ -176,13 +152,13 @@ let order = [
   new Index(0, 1),
 ];
 
-function turnZ(zIndex, clockwise) {
+function turnZ(zIndex) {
   let configs = [];
 
   for (let i = 0; i < order.length; i++) {
     const a = order[i].a;
     const b = order[i].b;
-    qb[a][b][zIndex].config.rotateZ(clockwise);
+    qb[a][b][zIndex].config.rotateZ();
     configs.push(qb[a][b][zIndex].config.copy());
   }
 
@@ -190,17 +166,21 @@ function turnZ(zIndex, clockwise) {
     const a = order[i].a;
     const b = order[i].b;
 
+    // if (!clockwise) {
+    //   qb[a][b][zIndex].config = configs[(i + order.length - 2) % order.length];
+    // } else {
     qb[a][b][zIndex].config = configs[(i + 2) % order.length];
+    // }
   }
 }
 
-function turnY(yIndex, clockwise) {
+function turnY(yIndex) {
   let configs = [];
 
   for (let i = 0; i < order.length; i++) {
     const a = order[i].a;
     const b = order[i].b;
-    qb[a][yIndex][b].config.rotateY(clockwise);
+    qb[a][yIndex][b].config.rotateY();
     configs.push(qb[a][yIndex][b].config.copy());
   }
 
@@ -208,24 +188,32 @@ function turnY(yIndex, clockwise) {
     const a = order[i].a;
     const b = order[i].b;
 
+    // if (!clockwise) {
+    //   qb[a][yIndex][b].config = configs[(i + order.length - 2) % order.length];
+    // } else {
     qb[a][yIndex][b].config = configs[(i + 2) % order.length];
+    // }
   }
 }
 
-function turnX(yIndex, clockwise) {
+function turnX(xIndex) {
   let configs = [];
 
   for (let i = 0; i < order.length; i++) {
     const a = order[i].a;
     const b = order[i].b;
-    qb[yIndex][a][b].config.rotateX(clockwise);
-    configs.push(qb[yIndex][a][b].config.copy());
+    qb[xIndex][a][b].config.rotateX();
+    configs.push(qb[xIndex][a][b].config.copy());
   }
 
   for (let i = 0; i < order.length; i++) {
     const a = order[i].a;
     const b = order[i].b;
 
-    qb[yIndex][a][b].config = configs[(i + 2) % order.length];
+    // if (!clockwise) {
+    //   qb[xIndex][a][b].config = configs[(i + order.length - 2) % order.length];
+    // } else {
+    qb[xIndex][a][b].config = configs[(i + 2) % order.length];
+    // }
   }
 }
