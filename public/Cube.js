@@ -1,5 +1,7 @@
+// constants
 const CUBIE_SIZE = 40;
-let arr = [];
+
+// global vars
 let qb = [];
 
 class Cube {
@@ -23,6 +25,7 @@ class Cube {
     // qb[0][0][2].highlight();
   }
 
+  // create cube out of dim * dim * dim cubies
   display() {
     for (let i = 0; i < this.dim; i++) {
       for (let j = 0; j < this.dim; j++) {
@@ -31,5 +34,62 @@ class Cube {
         }
       }
     }
+  }
+}
+
+function turnX(xIndex) {
+  let configs = [];
+
+  for (let i = 0; i < order.length; i++) {
+    const a = order[i].a;
+    const b = order[i].b;
+
+    qb[xIndex][a][b].config.rotateX();
+    configs.push(qb[xIndex][a][b].config.copy());
+  }
+
+  for (let i = 0; i < order.length; i++) {
+    const a = order[i].a;
+    const b = order[i].b;
+
+    qb[xIndex][a][b].config = configs[(i + 2) % order.length];
+  }
+}
+
+function turnY(yIndex) {
+  let configs = [];
+
+  for (let i = 0; i < order.length; i++) {
+    const a = order[i].a;
+    const b = order[i].b;
+
+    qb[a][yIndex][b].config.rotateY();
+    configs.push(qb[a][yIndex][b].config.copy());
+  }
+
+  for (let i = 0; i < order.length; i++) {
+    const a = order[i].a;
+    const b = order[i].b;
+
+    qb[a][yIndex][b].config = configs[(i + 2) % order.length];
+  }
+}
+
+function turnZ(zIndex) {
+  let configs = [];
+
+  for (let i = 0; i < order.length; i++) {
+    const a = order[i].a;
+    const b = order[i].b;
+
+    qb[a][b][zIndex].config.rotateZ();
+    configs.push(qb[a][b][zIndex].config.copy());
+  }
+
+  for (let i = 0; i < order.length; i++) {
+    const a = order[i].a;
+    const b = order[i].b;
+
+    qb[a][b][zIndex].config = configs[(i + 2) % order.length];
   }
 }

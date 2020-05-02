@@ -30,7 +30,7 @@ function setup() {
   // ---------------------------------------------------------
 
   createEasyCam();
-  // turnZ();
+  // scramble();
 }
 
 let x = -0.4;
@@ -42,6 +42,52 @@ function draw() {
   rotateY(y);
   cube.display();
 }
+
+// function turnF(CW) {
+//   if (CW) {
+//     turnZ(2);
+//   } else {
+//     turnZ(2);
+//     turnZ(2);
+//     turnZ(2);
+//   }
+// }
+
+// function F() {
+//   turnZ(2);
+//   turnZ(2);
+//   turnZ(2);
+// }
+
+// function B() {
+//   turnZ(0);
+// }
+
+// function b() {
+//   turnZ(0);
+//   turnZ(0);
+//   turnZ(0);
+// }
+
+// function r() {
+//   turnX(2);
+// }
+
+// function R() {
+//   turnX(2);
+//   turnX(2);
+//   turnX(2);
+// }
+
+// function l() {
+//   turnX(0);
+//   turnX(0);
+//   turnX(0);
+// }
+
+// function L() {
+//   turnX(0);
+// }
 
 function keyPressed() {
   switch (keyCode) {
@@ -115,14 +161,40 @@ function keyPressed() {
       break;
 
     // Middle layer slices
-    case "z":
+    case "s":
       turnZ(1);
       break;
-    case "y":
+    case "S":
+      turnZ(1);
+      turnZ(1);
+      turnZ(1);
+      break;
+    case "E":
       turnY(1);
       break;
-    case "x":
+    case "e":
+      turnY(1);
+      turnY(1);
+      turnY(1);
+      break;
+    case "M":
+      turnX(1);
+      break;
+    case "m":
+      turnX(1);
+      turnX(1);
       turnX(1);
       break;
   }
+}
+
+const ALL_MOVES = [];
+
+function scramble() {
+  let moves = [];
+  for (let i = 0; i < 25; i++) {
+    const r = Math.ceil(Math.random() * 11); // int between 0 - 11
+    moves.push(ALL_MOVES[r]);
+  }
+  console.log(moves);
 }
