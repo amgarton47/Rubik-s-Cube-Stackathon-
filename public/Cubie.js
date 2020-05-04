@@ -82,8 +82,4 @@ class Cubie {
 
     pop();
   }
-
-  highlight() {
-    this.config = new Config([6, 6, 6, 6, 6, 6]);
-  }
 }

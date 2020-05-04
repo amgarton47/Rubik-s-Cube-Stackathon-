@@ -21,8 +21,6 @@ class Cube {
         }
       }
     }
-
-    // qb[0][0][2].highlight();
   }
 
   // create cube out of dim * dim * dim cubies
