@@ -157,6 +157,8 @@ function keyPressed() {
   }
 }
 
+let scrambleElement = document.getElementsByClassName("a")[0];
+
 let scrambleMoves = [];
 
 function scramble() {
@@ -170,6 +172,7 @@ function randomMove() {
   scrambleMoves.push(currentMove);
   currentMove.start();
   console.log(scrambleMoves);
+  console.log(scrambleElement);
 }
 
 function setIntervalX(callback, delay, repetitions) {
