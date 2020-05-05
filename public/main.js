@@ -1,7 +1,7 @@
 const CANVAS_HEIGHT = window.innerHeight * 0.95;
 const CANVAS_WIDTH = window.innerWidth * 0.95;
 
-const SCRAMBLE_LENGTH = 15;
+const SCRAMBLE_LENGTH = 10;
 
 const MOVES = {
   DOWN: new Move(0, 1, 0, 1),
@@ -20,6 +20,7 @@ const MOVES = {
 
 let cube;
 let currentMove = new Move(0, 1, 0, 1);
+let cam;
 
 function setup() {
   createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT, WEBGL);
@@ -47,119 +48,46 @@ function setup() {
   };
   // ---------------------------------------------------------
 
-  createEasyCam();
+  // peasy cam
+  cam = createEasyCam();
+  cam.setDistanceMin(275); // restrict zoom distances
+  cam.setDistanceMax(550);
+
   cube = new Cube(3);
 }
 
-let x = -0.4;
-let y = -0.4;
+// initial cam angle offsets
+let x = -0.35;
+let y = -0.35;
 
 function draw() {
   background(50, 51, 51);
   rotateX(x);
   rotateY(y);
+
   cube.display();
   currentMove.update();
 }
 
-function keyPressed() {
-  switch (keyCode) {
-    case DOWN_ARROW:
-      x -= 0.4;
-      break;
-    case UP_ARROW:
-      x += 0.4;
-      break;
-    case LEFT_ARROW:
-      y -= 0.4;
-      break;
-    case RIGHT_ARROW:
-      y += 0.4;
-      break;
-  }
-
-  switch (key) {
-    // F and B
-    case "f":
-      currentMove = MOVES.FRONTP;
-      currentMove.start();
-      break;
-    case "F":
-      currentMove = MOVES.FRONT;
-      currentMove.start();
-      break;
-    case "b":
-      currentMove = MOVES.BACKP;
-      currentMove.start();
-      break;
-    case "B":
-      currentMove = MOVES.BACK;
-      currentMove.start();
-      break;
-
-    // U and D
-    case "u":
-      currentMove = MOVES.UPP;
-      currentMove.start();
-      break;
-    case "U":
-      currentMove = MOVES.UP;
-      currentMove.start();
-      break;
-    case "d":
-      currentMove = MOVES.DOWNP;
-      currentMove.start();
-      break;
-    case "D":
-      currentMove = MOVES.DOWN;
-      currentMove.start();
-      break;
-
-    // R and L
-    case "r":
-      currentMove = MOVES.RIGHTP;
-      currentMove.start();
-      break;
-    case "R":
-      currentMove = MOVES.RIGHT;
-      currentMove.start();
-      break;
-    case "l":
-      currentMove = MOVES.LEFTP;
-      currentMove.start();
-      break;
-    case "L":
-      currentMove = MOVES.LEFT;
-      currentMove.start();
-      break;
-
-    // Middle layer slices
-    case "s":
-      turnZ(0, false);
-      break;
-    case "S":
-      turnZ(0, true);
-      break;
-    case "E":
-      turnY(0, false);
-      break;
-    case "e":
-      turnY(0, true);
-      break;
-    case "M":
-      turnX(0, false);
-      break;
-    case "m":
-      turnX(0, true);
-      break;
-    case " ":
-      scramble();
-  }
-}
-
-let scrambleElement = document.getElementsByClassName("a")[0];
-
 let scrambleMoves = [];
+let scrambleKeys = [];
+
+const MOVES_KEYS = [
+  "UP",
+  "UPP",
+  "DOWN",
+  "DOWNP",
+  "FRONT",
+  "FRONTP",
+  "BACK",
+  "BACKP",
+  "RIGHT",
+  "RIGHTP",
+  "LEFT",
+  "LEFTP",
+];
+
+const scrambleElement = document.getElementById("scramble");
 
 function scramble() {
   randomMove();
@@ -167,12 +95,21 @@ function scramble() {
 }
 
 function randomMove() {
-  let keys = Object.keys(MOVES);
-  currentMove = MOVES[keys[(keys.length * Math.random()) << 0]];
-  scrambleMoves.push(currentMove);
+  // let keys = Object.keys(MOVES);
+  // currentMove = MOVES[keys[(keys.length * Math.random()) << 0]];
+  // scrambleMoves.push(currentMove);
+  // currentMove.start();
+  // console.log(scrambleMoves);
+  // console.log(scrambleElement);
+
+  let r = Math.floor(Math.random() * MOVES_KEYS.length);
+  let key = MOVES_KEYS[r];
+  let m = MOVES[key];
+  scrambleMoves.push(m);
+  scrambleKeys.push(key);
+  currentMove = m;
   currentMove.start();
-  console.log(scrambleMoves);
-  console.log(scrambleElement);
+  scrambleElement.innerHTML += ` ${translator(key)}, `;
 }
 
 function setIntervalX(callback, delay, repetitions) {
@@ -184,4 +121,33 @@ function setIntervalX(callback, delay, repetitions) {
       window.clearInterval(intervalID);
     }
   }, delay);
+}
+
+function translator(moveKey) {
+  switch (moveKey) {
+    case "UP":
+      return "U";
+    case "UPP":
+      return "U'";
+    case "DOWN":
+      return "D";
+    case "DOWNP":
+      return "D'";
+    case "RIGHT":
+      return "R";
+    case "RIGHTP":
+      return "R'";
+    case "LEFT":
+      return "L";
+    case "LEFTP":
+      return "L";
+    case "BACK":
+      return "B";
+    case "BACKP":
+      return "B'";
+    case "FRONT":
+      return "F";
+    case "FRONTP":
+      return "F'";
+  }
 }

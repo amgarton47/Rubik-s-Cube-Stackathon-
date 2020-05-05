@@ -1,0 +1,16 @@
+{
+  "folders": [
+	{
+		"name": "Stackathon",
+		"path": "/Users/aidangarton/Desktop/Stackathon"
+	},
+	{
+		"name": "dist",
+		"path": "/Users/aidangarton/Downloads/toji-gl-matrix-989550c/dist"
+	}
+],
+  "settings": {
+    "git.ignoreLimitWarning": true,
+    "liveServer.settings.multiRootWorkspaceName": "Stackathon"
+  }
+}
