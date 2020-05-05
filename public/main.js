@@ -22,8 +22,19 @@ let cube;
 let currentMove = new Move(0, 1, 0, 1);
 let cam;
 
+let speech;
+
+let lang = navigator.language || "en-US";
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+
 function setup() {
-  createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT, WEBGL);
+  // let canvas = createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT, WEBGL);
+  let canvas = createCanvas(windowWidth, windowHeight, WEBGL);
+  canvas.style("z-index", "-1");
+  canvas.position(0, 0);
 
   // necessary for Easy cam in p5.js
   // ---------------------------------------------------------
@@ -54,6 +65,30 @@ function setup() {
   cam.setDistanceMax(550);
 
   cube = new Cube(3);
+
+  speech = new p5.SpeechRec(lang, logSpeech);
+
+  function logSpeech() {
+    console.log(speech.resultString);
+    // currentMove.start();
+    let a = speech.resultString;
+
+    if (a.toLowerCase() === "up") {
+      currentMove = MOVES["UP"];
+      currentMove.start();
+    } else if (a.toLowerCase() === "right") {
+      currentMove = MOVES["RIGHT"];
+      currentMove.start();
+    } else if (a.toLowerCase() === "left") {
+      currentMove = MOVES["LEFT"];
+      currentMove.start();
+    }
+  }
+
+  let continuous = true;
+  let interim = false;
+
+  speech.start(continuous, interim);
 }
 
 // initial cam angle offsets
@@ -61,7 +96,7 @@ let x = -0.35;
 let y = -0.35;
 
 function draw() {
-  background(50, 51, 51);
+  background("#24272B");
   rotateX(x);
   rotateY(y);
 
@@ -109,7 +144,7 @@ function randomMove() {
   scrambleKeys.push(key);
   currentMove = m;
   currentMove.start();
-  scrambleElement.innerHTML += ` ${translator(key)}, `;
+  scrambleElement.innerHTML += ` ${translator(key)} `;
 }
 
 function setIntervalX(callback, delay, repetitions) {
@@ -151,3 +186,5 @@ function translator(moveKey) {
       return "F'";
   }
 }
+
+// let btn = createButton("enable microphone commands");

@@ -93,10 +93,12 @@ span {
   position: absolute;
   margin-left: 100px;
   font-size: 30pt;
-  color: white
+  color: #2ba84a;
+  font-family: Helvetica Narrow, sans-serif;
+  letter-spacing: 5px;
 }
 
-.fade-in {
+/* .fade-in {
   animation: fadeIn ease 10s;
   -webkit-animation: fadeIn ease 10s;
   -moz-animation: fadeIn ease 10s;
@@ -105,44 +107,45 @@ span {
 }
 @keyframes fadeIn {
   0% {
-    opacity:0;
+    opacity: 0;
   }
   100% {
-    opacity:1;
+    opacity: 1;
   }
 }
 
 @-moz-keyframes fadeIn {
   0% {
-    opacity:0;
+    opacity: 0;
   }
   100% {
-    opacity:1;
+    opacity: 1;
   }
 }
 
 @-webkit-keyframes fadeIn {
   0% {
-    opacity:0;
+    opacity: 0;
   }
   100% {
-    opacity:1;
+    opacity: 1;
   }
 }
 
 @-o-keyframes fadeIn {
   0% {
-    opacity:0;
+    opacity: 0;
   }
   100% {
-    opacity:1;
+    opacity: 1;
   }
 }
 
 @-ms-keyframes fadeIn {
   0% {
-    opacity:0;
+    opacity: 0;
   }
   100% {
-    opacity:1;
-}
+    opacity: 1;
+  }
+} */
