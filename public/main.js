@@ -70,16 +70,15 @@ function setup() {
 
   function logSpeech() {
     console.log(speech.resultString);
-    // currentMove.start();
-    let a = speech.resultString;
+    let result = speech.resultString;
 
-    if (a.toLowerCase() === "up") {
+    if (result.toLowerCase() === "up") {
       currentMove = MOVES["UP"];
       currentMove.start();
-    } else if (a.toLowerCase() === "right") {
+    } else if (result.toLowerCase() === "right") {
       currentMove = MOVES["RIGHT"];
       currentMove.start();
-    } else if (a.toLowerCase() === "left") {
+    } else if (result.toLowerCase() === "left") {
       currentMove = MOVES["LEFT"];
       currentMove.start();
     }
