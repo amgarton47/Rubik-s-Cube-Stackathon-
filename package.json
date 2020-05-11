@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ndarray": "^1.0.19"
+    "ndarray": "^1.0.19",
+    "p5": "^1.0.0"
   }
 }

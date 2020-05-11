@@ -54,7 +54,7 @@ table {
   position: absolute;
   display: inline-block;
 }
-/* 
+
 .container {
   background-color: white;
   text-align: center;
@@ -70,13 +70,13 @@ table {
   padding: 30px;
 }
 
-/* body {
+body {
   background-image: url(source.gif);
   margin: 0px;
   border: 0px;
-} */
+}
 
-/* .green {
+.green {
   color: green;
 }
 
@@ -87,7 +87,7 @@ table {
   text-align: center;
   font-size: 20pt;
   border-radius: 15px;
-} */
+}
 
 span {
   position: absolute;
@@ -98,54 +98,13 @@ span {
   letter-spacing: 5px;
 }
 
-/* .fade-in {
-  animation: fadeIn ease 10s;
-  -webkit-animation: fadeIn ease 10s;
-  -moz-animation: fadeIn ease 10s;
-  -o-animation: fadeIn ease 10s;
-  -ms-animation: fadeIn ease 10s;
+#btn {
+  border-style: none;
+  background-color: #4caf50;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-moz-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-o-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-ms-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-} */
